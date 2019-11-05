@@ -1,24 +1,5 @@
 ---
-- hosts: webserver
+- hosts: webservers
   become: true
-  tasks:    
-    - name: Install Packages
-      apt: update_cache=yes pkg={{item}} state=present
-      with_items:        
-        - python-pip
-        - nginx
-      
-    - name: Copy app
-      copy: src=/vagrant/flask-hello-world/ dest=/home/vagrant/flask-hello-world
-      
-    - name: Install Python required packages
-      pip: name={{item}}
-      with_items:
-       - Flask
-       - gunicorn
-    
-    - name: Copy configuration
-      copy: src=/home/vagrant/flask-hello-world/hello-world.conf dest=/etc/init/hello-world.conf
-
-    - name: Make sure our server is running
-      service: name=hello-world state=started
+  roles:
+    - webservers
