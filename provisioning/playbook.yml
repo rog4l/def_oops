@@ -1,11 +1,10 @@
 ---
-- hosts: all
+- hosts: webserver
   become: true
   tasks:    
     - name: Install Packages
       apt: update_cache=yes pkg={{item}} state=present
-      with_items:
-        - git
+      with_items:        
         - python-pip
         - nginx
       

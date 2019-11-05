@@ -1,2 +1,4 @@
 # Vagrant stuff
 .vagrant
+# Ansible stuff
+*.retry
