@@ -11,8 +11,11 @@
     - name: Copy app
       copy: src=/vagrant/flask-hello-world/ dest=/home/vagrant/flask-hello-world
       
-    - name: Install requirements
-      pip: requirements=/home/vagrant/flask-hello-world/requirements.txt
+    - name: Install Python required packages
+      pip: name={{item}}
+      with_items:
+       - Flask
+       - gunicorn
     
     - name: Copy configuration
       copy: src=/home/vagrant/flask-hello-world/hello-world.conf dest=/etc/init/hello-world.conf
