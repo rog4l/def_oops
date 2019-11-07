@@ -7,7 +7,10 @@
     state: present
   
 - name: Copy appication 
-  copy: src=/vagrant/flask-hello-world/ dest=/home/vagrant/flask-hello-world
+  copy:
+    src: /vagrant/flask-hello-world/
+    dest: /home/vagrant/flask-hello-world
+    force: no
       
 - name: Install Python packages
   pip: 
@@ -16,7 +19,13 @@
       - gunicorn
     
 - name: Copy configuration
-  copy: src=/home/vagrant/flask-hello-world/hello-world.conf dest=/etc/init/hello-world.conf
+  copy: 
+    src: /home/vagrant/flask-hello-world/hello-world.conf 
+    dest: /etc/init/hello-world.conf
+    force: no
 
 - name: Make sure our server is running
-  service: name=hello-world state=started enabled=yes
+  service: 
+    name: hello-world 
+    state: started 
+    enabled: yes
