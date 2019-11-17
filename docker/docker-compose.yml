@@ -1,0 +1,12 @@
+version: "3"
+services:
+  web:
+    image: rog4l/def_oops:task2
+    deploy:
+      resources:
+        limits:
+          cpus: "0.1"
+          memory: 50M
+    ports:
+      - "1112:8000"
+
